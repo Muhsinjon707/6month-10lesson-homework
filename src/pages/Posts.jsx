@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Pagination } from '@mui/material';
 
 import { motion } from 'framer-motion';
 import fadeIn from '../variants';
-import { h2 } from 'framer-motion/m';
 
 function Posts() {
     const [posts, setPosts] = useState([]);
-    const [page, setPage] = useState(1);
     const [limit, setLimit] = useState();
 
+    const [searchParams, setSearchParams] = useSearchParams();
     const [loading, isLoading] = useState(false);
+
+    const page = parseInt(searchParams.get("page")) || 1;
 
     useEffect(() => {
         isLoading(true);
@@ -33,7 +34,7 @@ function Posts() {
     };
 
     const handlePage = (event, position) => {
-        setPage(position);
+        setSearchParams({page: position})
     };
 
     return (
