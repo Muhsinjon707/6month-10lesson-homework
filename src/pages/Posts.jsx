@@ -8,7 +8,8 @@ import fadeIn from '../variants';
 
 function Posts() {
     const [posts, setPosts] = useState([]);
-    const [limit, setLimit] = useState();
+    const [limit, setLimit] = useState(5);
+    const [offset, setOffset] = useState(0);
 
     const [searchParams, setSearchParams] = useSearchParams();
     const [loading, isLoading] = useState(false);
@@ -17,7 +18,7 @@ function Posts() {
 
     useEffect(() => {
         isLoading(true);
-        axios.get(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${limit}`)
+        axios.get(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${limit}&_offset=${offset}`)
             .then(response => {
                 if (response.status == 200) {
                     setPosts(response.data);
@@ -27,6 +28,17 @@ function Posts() {
             .finally(() => isLoading(false));
     }, [page, limit]);
 
+    useEffect(() => {
+        const handleScroll = (e) => {
+            const scrollHeight = e.target.documentElement.scrollHeight;
+            const currentHeight = e.target.documentElement.scrollTop + window.innerHeight;
+            if (currentHeight + 1 >= scrollHeight) {
+                setOffset(offset + 5)
+            }    
+        }
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [offset])
 
     const navigate = useNavigate();
     const redirectPostDetail = (post) => {
