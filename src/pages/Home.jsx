@@ -17,7 +17,7 @@ function Home() {
 
             <div className='w-full flex flex-col gap-5 mt-8'>
                 <motion.div
-                    variants={fadeIn("left")}
+                    variants={fadeIn("right")}
                     initial="hidden"
                     whileInView={"show"}
                     viewport={{ once: false, amount: .3 }}
@@ -25,7 +25,7 @@ function Home() {
                     className='w-1/3 bg-white shadow-2xl border-2 rounded-lg p-5 flex justify-between py-8 hover:transform hover:scale-110 transition-all duration-500'>
                     <h3 className='py-3 px-4 bg-blue-800 text-white rounded-sm'>Posts</h3>
                     <button className='text-lg hover:font-bold transition-all duration-200'>
-                        <Link to="/posts">Link</Link>
+                        <Link to="/posts">Just pagination</Link>
                     </button>
                 </motion.div>
 
@@ -38,7 +38,7 @@ function Home() {
                     className='w-1/3 bg-white shadow-2xl border-2 rounded-lg p-5 flex justify-between py-8 hover:transform hover:scale-110 transition-all duration-500'>
                     <h3 className='py-3 px-4 bg-blue-800 text-white rounded-sm'>Comments</h3>
                     <button className='text-lg hover:font-bold transition-all duration-200'>
-                        <Link to="/comments">Link</Link>
+                        <Link to="/comments">Infinite scrolling</Link>
                     </button>
                 </motion.div>
 

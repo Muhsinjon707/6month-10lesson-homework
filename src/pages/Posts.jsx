@@ -50,7 +50,7 @@ function Posts() {
     };
 
     return (
-        <motion.dev
+        <motion.div
             variants={fadeIn("up", .2)}
             initial="hidden"
             whileInView={"show"}
@@ -88,7 +88,7 @@ function Posts() {
                 <option value="25">25</option>
             </select>
             <Pagination className='mb-32' onChange={handlePage} count={10} page={page} />
-        </motion.dev>
+        </motion.div>
     );
 }
 
